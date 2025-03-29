@@ -4,7 +4,19 @@ from datetime import datetime, timedelta
 import requests
 from bs4 import BeautifulSoup
 import os
+import zipfile
 
+# Função para compactar arquivos em ZIP
+def compactar_zip(download_folder):
+    zip_filename = os.path.join(download_folder, 'arquivos_ANS.zip')
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(download_folder):
+            for file in files:
+                if file.endswith('.pdf'):
+                    zipf.write(os.path.join(root, file), arcname=file)
+    print(f"Arquivos compactados em: {zip_filename}")
+
+# Função para download dos PDFs
 def download_ans_pdfs(**kwargs):
     url = "https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos"
     response = requests.get(url)
@@ -14,6 +26,7 @@ def download_ans_pdfs(**kwargs):
     download_folder = '/home/alan/Documentos/Programms/ans-data-pipeline-airflow/downloads' 
     os.makedirs(download_folder, exist_ok=True)
 
+    # Baixando os arquivos PDF
     for attachment in attachments:
         href = attachment['href']
         if href.endswith('.pdf') and 'Anexo' in attachment.text:
@@ -23,6 +36,9 @@ def download_ans_pdfs(**kwargs):
             with open(file_name, 'wb') as f:
                 f.write(file_response.content)
             print(f"Downloaded: {file_name}")
+
+    # Compactando os arquivos após o download
+    compactar_zip(download_folder)
 
 with DAG(
     dag_id='download_ans_pdfs',
