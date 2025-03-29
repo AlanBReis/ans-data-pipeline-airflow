@@ -1,6 +1,6 @@
 # Projeto de Web Scraping com Airflow
 
-Este é um projeto que utiliza o Apache Airflow para automatizar o processo de web scraping, com o objetivo de baixar documentos PDF relacionados à atualização do rol de procedimentos da ANS (Agência Nacional de Saúde Suplementar).
+Este é um projeto que utiliza o Apache Airflow para automatizar o processo de web scraping, com o objetivo de baixar documentos PDF relacionados à atualização do rol de procedimentos da ANS (Agência Nacional de Saúde Suplementar). :D
 
 ## Descrição
 
