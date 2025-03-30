@@ -1,6 +1,14 @@
 # Projeto de Web Scraping e Extração de Dados da ANS com Airflow
 
-Este projeto utiliza o Apache Airflow para automatizar o processo de web scraping e extração de dados de arquivos PDF, com o objetivo de coletar informações sobre a atualização do rol de procedimentos da ANS (Agência Nacional de Saúde Suplementar).
+Este projeto utiliza o Apache Airflow para automatizar o processo de web scraping e extração de dados de arquivos PDF e transformar em arquivos csv alem de compacta-los,  o objetivo de coletar informações sobre a atualização do rol de procedimentos da ANS (Agência Nacional de Saúde Suplementar).
+
+![GIF do Projeto](https://media.tenor.com/1yxq0RcHTFsAAAAj/magic-computer.gif)
+
+
+## Apache Airflow em andamento
+
+![Apache Airflow](img/image.png)
+
 
 ## Descrição
 
@@ -40,7 +48,7 @@ O projeto automatiza o download de arquivos PDF disponíveis no portal da ANS, r
     pip install requirements.txt
     ```
 
-3.  Configure o Airflow (se necessário).
+3.  Configure o Airflow
 4.  Coloque a DAG na pasta `dags` do Airflow.
 
 ## Uso
